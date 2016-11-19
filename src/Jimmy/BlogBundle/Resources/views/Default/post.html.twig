@@ -1,0 +1,17 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{article.getTitle()}}::JimBlog{% endblock %}
+
+{% block body %}
+	<div>
+		<h1>{{article.getTitle()}}</h1>
+		<div class"content">
+			<div>{{article.getDate() | date('Y-m-d H:i:s') }} - <small>{{article.getAuthor()}}</small></div>
+			<div class="content">
+				<p>
+					{{article.getContent()}}
+				</p>
+			</div>
+		</div>
+	</div>
+{% endblock %}

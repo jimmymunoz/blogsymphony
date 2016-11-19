@@ -1,0 +1,27 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Accueil::JimBlog{% endblock %}
+
+{% block body %}
+	<section class="articles">	
+		{% for article in articles %}
+			<div class="row">    
+			    <div class="col-md-2 col-sm-3 text-center">
+			      <a class="story-title" href="post/{{article.getUrl()}}"><img alt="" src="http://blog.cellenza.com/wp-content/uploads/2014/03/xamarin.jpg" style="width:100px;height:100px" class="img-circle"></a>
+			    </div>
+			    <div class="col-md-10 col-sm-9">
+			      <h3>{{article.getTitle()}}</h3>
+			      <div class="row">
+			        <div class="col-xs-9">
+			          <h4><span class="label label-default">{{article.getAuthor()}}</span></h4><h4>
+			          <small style="font-family:courier,'new courier';" class="text-muted">{{article.getDate() | date('Y-m-d H:i:s') }}  • <a href="post/{{article.getUrl()}}" class="text-muted">Read More</a></small>
+			          </h4></div>
+			        <div class="col-xs-3"></div>
+			      </div>
+			    </div>
+			  <hr>
+			</div>
+			
+		{% endfor %}
+	</section>	
+{% endblock %}
