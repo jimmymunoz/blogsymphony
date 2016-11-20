@@ -3,28 +3,50 @@
 {% block title %}Accueil::JimBlog{% endblock %}
 
 {% block body %}
-	<section class="articles">	
-		{% for article in articles %}
-			<div class="row">    
-			    <div class="col-md-2 col-sm-3 text-center">
-			      <a class="story-title" href="post/{{article.getUrl()}}"><img alt="" src="http://blog.cellenza.com/wp-content/uploads/2014/03/xamarin.jpg" style="width:100px;height:100px" class="img-circle"></a>
+	<section class="articles">
+		<h1><i class="glyphicon glyphicon-file"></i> Articles</h1>
+		{% if is_granted("ROLE_ADMIN") %}
+			<div class="row">
+			    <div class="col-xs-11 text-left">
+			    	<a href="new" class="btn btn-success"> <span class="glyphicon glyphicon-plus"></span> New Post</a>
 			    </div>
-			    <div class="col-md-10 col-sm-9">
-			      <h3>{{article.getTitle()}}</h3>
+			</div>
+		{% endif %}
+    	<hr/>
+		{% for article in articles %}
+			
+			<div class="row">
+				{% if is_granted("ROLE_ADMIN") %}
+					<div class="row">
+					    <div class="col-xs-11 text-right">
+							<div class="btn-group" role="group" aria-label="...">
+					        	<a href="edit/{{article.getId()}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+					        	<a href="delete/{{article.getId()}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+								  
+					        </div>
+					    </div>
+				    </div>
+			    {% endif %}    
+			    <div class="col-md-2 col-sm-3 text-center ">
+			    	<div class="vcenter">
+			      		<a class="story-title" href="post/{{article.getUrl()}}"><img alt="" src="http://blog.cellenza.com/wp-content/uploads/2014/03/xamarin.jpg" style="width:100px;height:100px" class="img-circle"></a>
+			    	</div>
+			    </div>
+			    <div class="col-md-10 col-sm-10">
+			      <h3><a href="post/{{article.getUrl()}}">{{article.getTitle()}}</a></h3>
 			      <div class="row">
-			        <div class="col-xs-9">
-			          <h4><span class="label label-default">{{article.getAuthor()}}</span></h4><h4>
-			          <small style="font-family:courier,'new courier';" class="text-muted">{{article.getDate() | date('Y-m-d H:i:s') }}  • <a href="post/{{article.getUrl()}}" class="text-muted">Read More</a></small>
-			          </h4></div>
-			        <div class="col-xs-3">
-			        	<a href="edit/{{article.getId()}}" class="btn btn-primary">Edit</a>
-			        	<a href="delete/{{article.getId()}}" class="btn btn-danger">Delete</a>
-			        </div>
+			        <div class="col-xs-11">
+			        	<div class="text-left date-author"> <i class="glyphicon glyphicon-calendar"></i> {{article.getDate() | date('Y-m-d H:i:s') }} - <i class="glyphicon glyphicon-user"></i> <small> {{article.getAuthor()}}</small></div>
+			          <p>
+				      	{{ article.getContent() | striptags | slice(0, 400) }} [...]
+				      	<a href="post/{{article.getUrl()}}" class="text-muted">Read More</a>
+				      </p>
+			      	</div>
+			        
 			      </div>
 			    </div>
-			  <hr>
 			</div>
-			
+			<hr/>
 		{% endfor %}
 	</section>	
 {% endblock %}

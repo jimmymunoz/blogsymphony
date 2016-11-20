@@ -3,14 +3,27 @@
 {% block title %}{{article.getTitle()}}::JimBlog{% endblock %}
 
 {% block body %}
-	<div>
+	<div class="container">
+		{% if is_granted("ROLE_ADMIN") %}
+			<div class="row">
+			    <div class="text-left">
+			    	<a href="{{edit_url}}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+		        	<a href="{{delete_url}}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+			    </div>
+			</div>
+		{% endif %}
 		<h1>{{article.getTitle()}}</h1>
 		<div class"content">
-			<div>{{article.getDate() | date('Y-m-d H:i:s') }} - <small>{{article.getAuthor()}}</small></div>
-			<div class="content">
-				<p>
-					{{article.getContent()}}
-				</p>
+			<div class="row col-xs-11">
+				<div class="text-left date-author"> <i class="glyphicon glyphicon-calendar"></i> {{article.getDate() | date('Y-m-d H:i:s') }} - <i class="glyphicon glyphicon-user"></i> <small> {{article.getAuthor()}}</small></div>
+			</div>
+			<br/>
+			<br/>
+			<div class="row">
+				<!-- http://twig.sensiolabs.org/doc/filters/raw.html -->
+				<div class="col-xs-11">
+					{{article.getContent() | raw}}
+				</div>
 			</div>
 		</div>
 	</div>

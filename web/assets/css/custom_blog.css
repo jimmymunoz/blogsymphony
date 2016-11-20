@@ -16,31 +16,68 @@ h1,h2,h3,.highlight,.navbar a,#masthead h4 {
 
 footer {
 
-  margin-top:40px;
-  padding-top:40px;
-  padding-bottom:40px;
+  margin-top:20px;
+  padding-top:20px;
+  padding-bottom:20px;
   background-color: rgb(29,56,85);
+  /*
+  background-color: rgb(29,56,85);
+   */
   color:#fff;
  
 }
+.text-muted{
+  color:#000;
+  font-weight: bold;
+}
+.hightlight-text{
+  color: #0F71AA;
+}
+.date-author{
+  color: #0F71AA;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 #masthead {
   min-height:199px;
+  background-color:rgb(29,56,85);
+  /*
   background-color:#00abff;
+   */
   color:#fff;
 }
 #masthead h1 {
-  font-size: 55px;
+  font-size: 40px;
   line-height: 1;
   color:#fefeff;
   margin-top:50px;
 }
 #masthead .well {
-  margin-top:31px;
+  margin-top:61px;
+  background-color:#0F71AA;
+  /*
+  background-color:#00abff;
   background-color:rgb(29,56,85);
-  border-color:rgb(29,56,85);
-  color:#efefff;
-  min-height:127px;
   opacity: 0.5;
+   */
+  padding: 10px;
+  font-size: 3em;
+  color:#efefff;
+  border-color:rgb(29,56,85);
+  min-height:70px;
+}
+.well a{
+  color:#fff;
+
 }
 
 #topPanel {
@@ -79,7 +116,10 @@ a,a:hover {
 }
 
 .navbar-bright {
+  /*
   background-color:rgb(29,56,85);
+   */
+  background-color:#000000;
   color:#fff;
   margin-bottom: 0;
   border-width: 0;
@@ -93,7 +133,7 @@ a,a:hover {
 }
 
 .navbar-bright li > a:hover {
-  background-color:#00abff;
+  background-color:#0F71AA;
 }
 
 .dropdown-menu {
@@ -163,4 +203,6 @@ a,a:hover {
 .btn-facebook:hover {background-color:#2A4998;color:#4C6BBA;}
 .btn-google-plus:hover {background-color:#C23836;color:#E45A58;}
 
-
+.main_content{
+  min-height: 800px;
+}

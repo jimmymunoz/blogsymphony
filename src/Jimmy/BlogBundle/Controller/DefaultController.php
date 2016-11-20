@@ -51,7 +51,9 @@ class DefaultController extends Controller
         return $this->render(
         	'JimmyBlogBundle:Default:post.html.twig'
         	,array(
-        		'article' => $article, 
+        		'article' => $article
+                ,'edit_url' => $this->generateUrl('editpost', array('articleId' => $article->getId()))
+                ,'delete_url' => $this->generateUrl('deletepost', array('articleId' => $article->getId()))
         	)
         );
     }

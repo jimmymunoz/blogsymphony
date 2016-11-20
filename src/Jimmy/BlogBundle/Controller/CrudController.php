@@ -67,12 +67,14 @@ class CrudController extends Controller
             
             $em->flush();
 
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('viewpost', ['postid' => $article->getUrl()]);
         }
 
         return $this->render('JimmyBlogBundle:Crud:edit_post.html.twig', array(
            'form' => $form->createView()
            ,'title' => 'edit_post'
+           //,'edit_url' => $this->generateUrl('editpost', array('articleId' => $articleId))
+           //,'delete_url' => $this->generateUrl('deletepost', array('articleId' => $articleId))
         ));
     }
 
