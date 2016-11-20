@@ -4,37 +4,96 @@ namespace Jimmy\BlogBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Jimmy\BlogBundle\Entity\Article;
+use Jimmy\BlogBundle\Form\ArticleForm;
+use Symfony\Component\HttpFoundation\Request;
 
 class CrudController extends Controller
 {
     /**
-     * @Route("/newPost")
+     * @Route("/new")
      */
-    public function newPostAction()
+    public function newAction(Request $request)
     {
-        return $this->render('JimmyBlogBundle:Crud:new_post.html.twig', array(
-            // ...
+        $article = new Article();
+
+        $form = $this->createForm(ArticleForm::class, $article, array( 'action' => 'new'));
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            
+            $article = $form->getData();
+            $article->setAuthor("Jimmy Munoz");
+            $article->setDate(new \DateTime());
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+            //return $this->redirectToRoute('new');
+        }
+
+        return $this->render('JimmyBlogBundle:Crud:edit_post.html.twig', array(
+           'form' => $form->createView()
+           ,'title' => 'create_new_post'
+        ));
+    }
+    
+    /**
+     * @Route("/edit/{articleId}", name="editpost")
+     */
+    public function editAction($articleId, Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('JimmyBlogBundle:Article')->find($articleId);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'No article found for id ' . $articleId
+            );
+        }
+
+        $form = $this->createForm(ArticleForm::class, $article, array( 'action' => $this->generateUrl('editpost', array('articleId' => $articleId) )));
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            
+            $article = $form->getData();
+            $article->setAuthor("Jimmy Munoz");
+            $article->setDate(new \DateTime());
+            
+            $em->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('JimmyBlogBundle:Crud:edit_post.html.twig', array(
+           'form' => $form->createView()
+           ,'title' => 'edit_post'
         ));
     }
 
     /**
-     * @Route("/getAllPost")
+     * @Route("/delete/{articleId}", name="deletepost")
      */
-    public function getAllPostAction()
+    public function deleteAction($articleId)
     {
-        return $this->render('JimmyBlogBundle:Crud:get_all_post.html.twig', array(
-            // ...
-        ));
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('JimmyBlogBundle:Article')->find($articleId);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'No article found for id ' . $articleId
+            );
+        }
+        $em->remove($article);
+        $em->flush();
+
+        return $this->redirectToRoute('homepage');
     }
 
-    /**
-     * @Route("/getPost")
-     */
-    public function getPostAction()
-    {
-        return $this->render('JimmyBlogBundle:Crud:get_post.html.twig', array(
-            // ...
-        ));
-    }
 
 }

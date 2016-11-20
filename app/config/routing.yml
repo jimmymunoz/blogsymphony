@@ -1,5 +1,5 @@
 app:
-    resource: "@JimmyBlogBundle/Controller/DefaultController.php"
+    resource: "@JimmyBlogBundle/Controller/"
     type:     annotation
 
 fos_user:

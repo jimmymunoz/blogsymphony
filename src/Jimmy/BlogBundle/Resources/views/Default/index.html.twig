@@ -16,7 +16,10 @@
 			          <h4><span class="label label-default">{{article.getAuthor()}}</span></h4><h4>
 			          <small style="font-family:courier,'new courier';" class="text-muted">{{article.getDate() | date('Y-m-d H:i:s') }}  • <a href="post/{{article.getUrl()}}" class="text-muted">Read More</a></small>
 			          </h4></div>
-			        <div class="col-xs-3"></div>
+			        <div class="col-xs-3">
+			        	<a href="edit/{{article.getId()}}" class="btn btn-primary">Edit</a>
+			        	<a href="delete/{{article.getId()}}" class="btn btn-danger">Delete</a>
+			        </div>
 			      </div>
 			    </div>
 			  <hr>
