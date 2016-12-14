@@ -17,6 +17,10 @@
 	    {{ form_widget(form.url, { 'attr': {'class': 'form-control'} }) }}
 	  </div>
 	  <div class="form-group">
+	    {{ form_label(form.image_url) }}
+	    {{ form_widget(form.image_url, { 'attr': {'class': 'form-control'} }) }}
+	  </div>
+	  <div class="form-group">
 	  	{{ form_label(form.content) }}
 	    {{ form_widget(form.content, { 'attr': {'class': 'form-control', 'rows': 20} }) }}
 	  </div>

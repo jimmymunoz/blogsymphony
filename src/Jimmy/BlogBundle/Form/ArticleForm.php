@@ -19,6 +19,7 @@ class ArticleForm extends AbstractType
             //->add('id', HiddenType::class)
             ->add('title', TextType::class)
             ->add('url', TextType::class)
+            ->add('image_url', TextType::class)
             ->add('content', CKEditorType::class)
             ->add('save', SubmitType::class)
         ;

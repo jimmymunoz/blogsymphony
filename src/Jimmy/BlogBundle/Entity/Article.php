@@ -56,6 +56,13 @@ class Article
      */
     private $url;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image_url", type="string", length=255, unique=true)
+     */
+    private $image_url;
+
 
     /**
      * Get id
@@ -185,6 +192,30 @@ class Article
     public function getUrl()
     {
         return $this->url;
+    }
+
+    /**
+     * Set image_url
+     *
+     * @param string $image_url
+     *
+     * @return Article
+     */
+    public function setImageUrl($image_url)
+    {
+        $this->image_url = $image_url;
+
+        return $this;
+    }
+
+    /**
+     * Get image_url
+     *
+     * @return string
+     */
+    public function getImageUrl()
+    {
+        return $this->image_url;
     }
 }
 
