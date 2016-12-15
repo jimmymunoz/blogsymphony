@@ -21,9 +21,12 @@ A Symfony 3 project created on November 3, 2016, 3:55 pm.
 
 ##Install Blog:
 ```
+
 cd /var/www/html/xxxx
 git clone https://github.com/jimmymunoz/blogsymphony.git
 sudo chown -R  www-data.www-data /var/www/html/xxxx
+
+composer update
 
 bower install --save bootstrap
 bin/console cache:clear --no-warmup
