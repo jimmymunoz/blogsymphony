@@ -16,15 +16,12 @@ class DefaultController extends Controller
 	 */
     public function indexAction()
     {
-        // bin/console cache:clear
         $articles = $this->getDoctrine()
         	->getRepository('JimmyBlogBundle:Article')
-            //->findAll();
         	->findBy(
                 array(),
                 array(),
                 10);
-        //var_dump($articles);
         return $this->render('JimmyBlogBundle:Default:index.html.twig'
         	,array('articles' => $articles, )
         );
@@ -39,7 +36,6 @@ class DefaultController extends Controller
     {
         $article = $this->getDoctrine()
         	->getRepository('JimmyBlogBundle:Article')
-        	//->find($postid);
             ->findOneBy(array('url' => $postid));
          
         if (!$article) {

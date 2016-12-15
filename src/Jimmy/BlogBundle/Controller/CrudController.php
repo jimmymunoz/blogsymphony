@@ -22,16 +22,15 @@ class CrudController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            
             $article = $form->getData();
-            $article->setAuthor("Jimmy Munoz");
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $username = $user->getUsername();
+            $article->setAuthor($username);
             $article->setDate(new \DateTime());
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
-            //return $this->redirectToRoute('new');
         }
 
         return $this->render('JimmyBlogBundle:Crud:edit_post.html.twig', array(
@@ -59,10 +58,11 @@ class CrudController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+            $username = $user->getUsername();
             
             $article = $form->getData();
-            $article->setAuthor("Jimmy Munoz");
+            $article->setAuthor($username);
             $article->setDate(new \DateTime());
             
             $em->flush();
@@ -73,8 +73,6 @@ class CrudController extends Controller
         return $this->render('JimmyBlogBundle:Crud:edit_post.html.twig', array(
            'form' => $form->createView()
            ,'title' => 'edit_post'
-           //,'edit_url' => $this->generateUrl('editpost', array('articleId' => $articleId))
-           //,'delete_url' => $this->generateUrl('deletepost', array('articleId' => $articleId))
         ));
     }
 

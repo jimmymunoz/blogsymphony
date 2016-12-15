@@ -16,7 +16,6 @@ class ArticleForm extends AbstractType
     {
         $builder
 			->setMethod('POST')
-            //->add('id', HiddenType::class)
             ->add('title', TextType::class)
             ->add('url', TextType::class)
             ->add('image_url', TextType::class)
