@@ -74,4 +74,8 @@ fos_user:
     firewall_name: main
     user_class: Jimmy\BlogBundle\Entity\User
 
-
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
