@@ -3,6 +3,15 @@
 
 A Symfony 3 project created on November 3, 2016, 3:55 pm.
 
+##Content:
+	
+IndexAction => page d'accueil (/) listant les x derniers billets (page à page),
+- PostAction => page billet (/post/$id) affichant le contenu d'un bille
+- NewAction => Ajout
+- EditAction => Edition
+- DeleteAction => Suppression
+
+
 ##Install:
 
 ###Composer:
@@ -21,8 +30,8 @@ ln -s /usr/bin/nodejs /usr/bin/node
 ###Bower:
 ```
 npm install -g bower
-
-###Blog:
+```
+##Blog:
 ```
 cd /var/www/html/xxxx
 git clone https://github.com/jimmymunoz/blogsymphony.git
@@ -34,7 +43,7 @@ bin/console doctrine:schema:update --force
 bin/console assets:install --symlink
 ```
 
-####Users:
+###Users:
 ```
 php bin/console fos:user:create myuser myemail@email.com password
 php bin/console fos:user:promote myuser ROLE_ADMIN
