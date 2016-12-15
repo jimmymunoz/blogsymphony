@@ -31,6 +31,8 @@ class CrudController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
+            
+            return $this->redirectToRoute('viewpost', ['postid' => $article->getUrl()]);
         }
 
         return $this->render('JimmyBlogBundle:Crud:edit_post.html.twig', array(

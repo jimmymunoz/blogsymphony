@@ -14,14 +14,20 @@ class DefaultController extends Controller
 	 * { function_description }
 	 * @Route("/", name="homepage")
 	 */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $articles = $this->getDoctrine()
-        	->getRepository('JimmyBlogBundle:Article')
-        	->findBy(
-                array(),
-                array(),
-                10);
+        $listarticles = $this->getDoctrine()
+            ->getRepository('JimmyBlogBundle:Article')
+            ->findBy(
+                array(), 
+                array('date'=>'desc')
+            );
+
+        $articles  = $this->get('knp_paginator')->paginate(
+            $listarticles, /* query NOT result */
+            $request->query->get('page', 1),
+            5);
+
         return $this->render('JimmyBlogBundle:Default:index.html.twig'
         	,array('articles' => $articles, )
         );

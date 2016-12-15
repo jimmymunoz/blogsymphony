@@ -5,33 +5,21 @@ A Symfony 3 project created on November 3, 2016, 3:55 pm.
 
 ##Content:
 	
-IndexAction => page d'accueil (/) listant les x derniers billets (page à page),
-- PostAction => page billet (/post/$id) affichant le contenu d'un bille
-- NewAction => Ajout
-- EditAction => Edition
-- DeleteAction => Suppression
+- IndexAction => Home page (/) List of the last post (page to page),
+- PostAction => Show post (/post/$id)
+- NewAction => Add
+- EditAction => Edit
+- DeleteAction => Delete
 
 
 ##Install:
 
-###Composer:
-```
-clean dir > Terminal > mkdir composer
-cd composer
-curl -sS https://getcomposer.org/installer | php
-sudo mv composer.phar /usr/local/bin/ vim ~/.bash_profile
-alias composer="php /usr/local/bin/composer.phar"
-```
-###Npm:
-```
-apt-get install npm
-ln -s /usr/bin/nodejs /usr/bin/node
-```
-###Bower:
-```
-npm install -g bower
-```
-##Blog:
+###Requires:
+- Composer
+- Npm
+- Bower
+
+##Install Blog:
 ```
 cd /var/www/html/xxxx
 git clone https://github.com/jimmymunoz/blogsymphony.git
@@ -51,11 +39,20 @@ php bin/console fos:user:promote myuser ROLE_ADMIN
 
 ##Screenshots
 
+###Index Action:
 ![Index Action](src/Jimmy/BlogBundle/Resources/public/screentshots/home.png?raw=true "Home")
+###Index Action:
 ![Index Action](src/Jimmy/BlogBundle/Resources/public/screentshots/responsive.png?raw=true "Home Responsive")
+###Pagination:
+![Edit Action](src/Jimmy/BlogBundle/Resources/public/screentshots/pagination.png?raw=true "Pagination")
+###Login:
 ![Login](src/Jimmy/BlogBundle/Resources/public/screentshots/login.png?raw=true "Login")
+###Index Action:
 ![Index Action](src/Jimmy/BlogBundle/Resources/public/screentshots/home_loged.png?raw=true "Home logged")
+###Post Action:
 ![Post Action](src/Jimmy/BlogBundle/Resources/public/screentshots/post_action.png?raw=true "View Post")
+###New Action:
 ![New Action](src/Jimmy/BlogBundle/Resources/public/screentshots/new_post.png?raw=true "New Post")
+###Edit Action:
 ![Edit Action](src/Jimmy/BlogBundle/Resources/public/screentshots/edit_post.png?raw=true "Edit Post")
 
