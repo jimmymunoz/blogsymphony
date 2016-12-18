@@ -1,8 +1,6 @@
 #Jimmy Blog Symfony
 =======
 
-A Symfony 3 project created on November 3, 2016, 3:55 pm.
-
 ##Content:
 	
 - IndexAction => Home page (/) List of the last post (page to page),
